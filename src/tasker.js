@@ -1,8 +1,10 @@
 const initialState = [];
 
+let nextId = 1;
+
 const ADD_TASK = "ADD_TASK";
 export function addTask(tasketa) {
-  return { tasketa, type: ADD_TASK };
+  return { tasketa: { ...tasketa, id: nextId++ }, type: ADD_TASK };
 }
 const DELETE_TASKS = "DELETE_TASKS";
 export function deleteTasks(tasketa) {
@@ -34,9 +36,17 @@ export function tasker(state = initialState, action) {
         return copy;
       }*/
     case MARK_TASK:
-      let copi = action.tasketa;
+      let copi = { ...action.tasketa };
+      let copi2 = [];
       copi.done = !action.tasketa.done;
-      return state;
+      console.log("Estat: ", copi);
+      for (let i = 0; i < state.length; i++) {
+        copi2[i] = { ...state[i] };
+        if (state[i].id === copi.id) {
+          copi2[i].done = !state[i].done;
+        }
+      }
+      return copi2;
     default:
       return state;
   }

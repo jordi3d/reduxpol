@@ -54,16 +54,16 @@ export default function App() {
               </tr>
             </thead>
             <tbody>
-              {tasks.map((n, index) => (
-                <tr key={index + n.id}>
+              {tasks.map((task) => (
+                <tr key={task.id}>
                   <td>
                     <input
                       type="checkbox"
-                      defaultChecked={tasks[index].mark}
-                      onClick={() => dispatchTask(markTask(tasks[index]))}
+                      checked={task.done}
+                      onChange={() => dispatchTask(markTask(task))}
                     />
                   </td>
-                  <td className="esquerres">{tasks[index].descripcio}</td>
+                  <td className="esquerres">{task.descripcio}</td>
                 </tr>
               ))}
             </tbody>
