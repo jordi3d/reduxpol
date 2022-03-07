@@ -2,7 +2,7 @@ const initalState = {
   count: 0,
 };
 
-const counterReducer = (state = initalState, action) => {
+export const counterReducer = (state = initalState, action) => {
   switch (action.type) {
     case "INCREASE_COUNTER":
       return {

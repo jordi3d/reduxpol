@@ -1,62 +1,68 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { addTask, deleteTasks, markTask } from "./actions/taskActions";
-import { taskitas } from "./reducers/taskReducer";
 import "./App.css";
 
 export default function App() {
-  //const task = useSelector((store) => store.taskReducer.action);
+  const tasks = useSelector((store) => store.taskReducer);
   const dispatchTask = useDispatch();
   const inputRef = useRef();
+  const [inputTask, setInputTask] = useState("");
 
   return (
     <>
       <div id="todolist">
         <h1>TO DO LIST</h1>
         <div id="dataentry">
-          <label>
+          <label htmlFor="inputTask">
             Entra la nova tasca:&nbsp;
-            <input type="text" id="inputTask" ref={inputRef} />
+            <input
+              type="text"
+              id="inputTask"
+              ref={inputRef}
+              onBlur={() => setInputTask(inputRef.current.value)}
+            />
           </label>
           <button
             className="botonet1"
-            onClick={() =>
+            onClick={() => {
+              console.log(inputTask);
               dispatchTask(
                 addTask({
-                  id: inputRef.current.value,
-                  descripcio: inputRef.current.value,
-                  done: false,
+                  id: inputTask,
+                  descripcio: inputTask,
+                  done: "",
                 })
-              )
-            }
+              );
+            }}
           >
             Add Task
           </button>
           <br />
           <button
             className="botonet2"
-            onClick={() => dispatchTask(deleteTasks())}
+            onClick={() => dispatchTask(deleteTasks(tasks))}
           >
             Delete Tasks
           </button>
           <table className="tauleta">
             <thead>
               <tr>
-                <th>DONE</th>
-                <th width="300">TASKS</th>
+                <th width="50">DONE</th>
+                <th width="315">TASKS</th>
               </tr>
             </thead>
             <tbody>
-              {taskitas.map((n, index) => (
+              {tasks.map((n, index) => (
                 <tr key={n.id}>
                   <td>
                     <input
                       type="checkbox"
-                      defaultChecked={taskitas[index].mark}
-                      onClick={() => dispatchTask(markTask(taskitas[index]))}
+                      defaultChecked={tasks[index].mark}
+                      onClick={() => dispatchTask(markTask(tasks[index]))}
                     />
                   </td>
-                  <td className="esquerres">{taskitas[index].descripcio}</td>
+                  <td className="esquerres">{tasks[index].descripcio}</td>
                 </tr>
               ))}
             </tbody>
