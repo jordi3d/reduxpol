@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
-import { addTask, deleteTasks, markTask } from "./actions/taskActions";
+//import { addTask, deleteTasks, markTask } from "./actions/taskActions";
+import { addTask, deleteTasks, markTask } from "./tasker";
 import "./App.css";
 
 export default function App() {
@@ -31,7 +32,7 @@ export default function App() {
                 addTask({
                   id: inputTask,
                   descripcio: inputTask,
-                  done: "",
+                  done: false,
                 })
               );
             }}
@@ -49,12 +50,12 @@ export default function App() {
             <thead>
               <tr>
                 <th width="50">DONE</th>
-                <th width="315">TASKS</th>
+                <th width="327">TASKS</th>
               </tr>
             </thead>
             <tbody>
               {tasks.map((n, index) => (
-                <tr key={n.id}>
+                <tr key={index + n.id}>
                   <td>
                     <input
                       type="checkbox"

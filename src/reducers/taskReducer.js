@@ -10,8 +10,8 @@ export const taskitas = [*/
 export const taskReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TASK":
-      alert("afegint");
-      let copy = [...state, state];
+      console.log("afegint", { state, action });
+      let copy = [...state, action.tasketa];
       console.log("Tasques:", copy.length, " vs ", state.length);
       return [...copy];
     case "DELETE_TASKS":

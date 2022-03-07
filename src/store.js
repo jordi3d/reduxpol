@@ -1,11 +1,11 @@
 import { createStore, combineReducers } from "redux";
 //import { counterReducer } from "./reducers/counterReducer";
-import { taskReducer } from "./reducers/taskReducer";
-//import { tasker } from "./tasker";
+//import { taskReducer } from "./reducers/taskReducer";
+import { tasker } from "./tasker";
 
 const appReducer = combineReducers({
-  taskReducer: taskReducer,
-  //taskReducer: tasker,
+  //taskReducer: taskReducer,
+  taskReducer: tasker,
   //counterReducer: counterReducer,
 });
 

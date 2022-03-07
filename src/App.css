@@ -37,7 +37,7 @@ label {
 
 .esquerres {
     text-align: left;
-    width: 317px;
+    width: 324px;
 }
 
 .tauleta,
@@ -62,8 +62,11 @@ tbody {
 }
 
 table {
+    display: block;
     table-layout: fixed;
     width: 389px;
+    max-height: 240px;
+    overflow-y: scroll;
 }
 
 tr td {

@@ -1,4 +1,5 @@
 export const addTask = (apunt) => {
+  alert("adding task a taskActions");
   return { type: "ADD_TASK", llista: apunt };
 };
 
